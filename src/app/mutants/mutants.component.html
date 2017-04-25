@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-sm-9">
+    <h2>Mutant Admin</h2>
+    <div class="row">
+      <div class="col-xs-8 col-sm-6">
+        <div class="row">
+        	<h3>Mutants:</h3>
+        </div>
+        <div class="list-group">
+        	<a *ngFor="let mutant of mutants" routerLink="/mutants/:id" class="list-group-item">{{mutant.name}}</a>
+        </div>
+        
+      </div>
+      <div class="col-xs-4 col-sm-6">
+         <div class="row">
+        	<h3>Add new mutant:</h3>
+        	
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
