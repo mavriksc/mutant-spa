@@ -1,8 +1,8 @@
 <h1>
   {{title}}
 </h1>
-<nav>
-     <a routerLink="/mutants" routerLinkActive="active">Mutants</a>
-     <a routerLink="/disasters" routerLinkActive="active">Disasters</a>
-</nav>
+<ul class="nav nav-pills">
+  <li role="presentation" routerLinkActive="active"><a routerLink="/mutants" >Mutants</a></li>
+  <li role="presentation"routerLinkActive="active"><a routerLink="/disasters" >Disasters</a></li>
+</ul>
 <router-outlet></router-outlet>
