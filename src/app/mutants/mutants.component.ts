@@ -13,34 +13,47 @@ import { Router } from '@angular/router';
 export class MutantsComponent implements OnInit {
   mutants: Mutant[];
   name = '';
-  abilities: string[] = [];
+  abilities: Ability[] = [];
 
   getMutants(): void {
     this.mutantService.getMutants().then(mutants=> this.mutants = mutants);
   }
 
-  add(name: string, abilities: string[]): void {
+  add(): void {    
+    this.name = this.name.trim();
+    if (!this.name) { return; }
     const m = new Mutant();
-    name = name.trim();
-    if (!name) { return; }
-    abilities.forEach(item => {
-      item = item.trim();
-      if (item) {
-        let a = new Ability();
-        a.description = item;
-        m.abilities.push(a);
-      };
+    m.abilities = [];
+    m.name = this.name;
+    this.abilities.forEach(item => {
+        if(item.description !=''){
+                m.abilities.push(item);
+            }
     });
-    // TODO service call
+   
+    this.mutantService.createMutant(m).then(mutant => this.mutants.push(mutant));
+    this.name='';
+    this.abilities = [];
+    this.abilities.push(new Ability(''));
+    this.abilities.push(new Ability(''));
+    this.abilities.push(new Ability(''));
+      
   }
+  deleteAbility(i: number): void{
+      this.abilities.splice(i,1);
+  }
+  addAbility(): void{
+      this.abilities.push(new Ability(''));
+  }
+  get diagnostic() { return JSON.stringify({name: this.name,abilities: this.abilities}); }
 
   constructor(private router: Router, private mutantService: MutantService) { }
 
   ngOnInit() {
     this.getMutants();
-    this.abilities.push('');
-    this.abilities.push('');
-    this.abilities.push('');
+    this.abilities.push(new Ability(''));
+    this.abilities.push(new Ability(''));
+    this.abilities.push(new Ability(''));
   }
 
 }
