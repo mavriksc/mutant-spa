@@ -7,8 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-mutants',
   templateUrl: './mutants.component.html',
-  styleUrls: ['./mutants.component.css'],
-  providers: [MutantService]
+  styleUrls: ['./mutants.component.css']
 })
 export class MutantsComponent implements OnInit {
   mutants: Mutant[];
@@ -32,6 +31,7 @@ export class MutantsComponent implements OnInit {
     });
    
     this.mutantService.createMutant(m).then(mutant => this.mutants.push(mutant));
+    // clear form
     this.name='';
     this.abilities = [];
     this.abilities.push(new Ability(''));

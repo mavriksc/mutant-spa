@@ -9,6 +9,7 @@ import { MutantsComponent } from './mutants/mutants.component';
 import { DisastersComponent } from './disasters/disasters.component';
 import { MutantDetailComponent } from './mutant-detail/mutant-detail.component';
 import { DisasterDetailComponent } from './disaster-detail/disaster-detail.component';
+import { MutantService } from './mutant.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { DisasterDetailComponent } from './disaster-detail/disaster-detail.compo
     AppRoutingModule,
     HttpModule
   ],
-  providers: [],
+  providers: [MutantService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

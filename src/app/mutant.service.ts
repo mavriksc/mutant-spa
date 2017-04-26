@@ -1,7 +1,6 @@
 import { Mutant } from './mutant';
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -12,16 +11,24 @@ export class MutantService {
   constructor(private http: Http) {}
 
   getMutants(): Promise<Mutant[]> {
-    return this.http.get(this.mutantsUrl).toPromise().then(response => response.json().data as Mutant[]).catch(this.handleError);
+    return this.http.get(this.mutantsUrl)
+      .toPromise()
+      .then(response => response.json().data as Mutant[])
+      .catch(this.handleError);
   }
 
   createMutant(m: Mutant): Promise<Mutant> {
     return this.http.post(this.mutantsUrl, JSON.stringify(m), {headers: this.headers})
-      .toPromise().then(response => response.json().data as Mutant).catch(this.handleError);
+      .toPromise()
+      .then(response => response.json().data as Mutant)
+      .catch(this.handleError);
   }
   getMutant(id: number): Promise<Mutant> {
-    const url = '{this.mutantsUrl}/${id}';
-    return this.http.get(url).toPromise().then(response => response.json().data as Mutant).catch(this.handleError);
+    const url = `${this.mutantsUrl}/${id}`;
+    return this.http.get(url)
+      .toPromise()
+      .then(response => response.json().data as Mutant)
+      .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {

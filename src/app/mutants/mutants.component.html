@@ -7,7 +7,7 @@
         	<h3>Mutants:</h3>
         </div>
         <div class="list-group">
-        	<a *ngFor="let mutant of mutants" routerLink="/mutants/{{mutant.id}}" class="list-group-item">{{mutant.name}}</a>
+        	<a *ngFor="let mutant of mutants" [routerLink]="['/mutants', mutant.id]" class="list-group-item">{{mutant.name}}</a>
         </div>
         
       </div>
