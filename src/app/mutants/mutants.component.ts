@@ -45,8 +45,6 @@ export class MutantsComponent implements OnInit {
   addAbility(): void{
       this.abilities.push(new Ability(''));
   }
-  get diagnostic() { return JSON.stringify({name: this.name,abilities: this.abilities}); }
-
   constructor(private router: Router, private mutantService: MutantService) { }
 
   ngOnInit() {

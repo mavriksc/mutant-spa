@@ -1,3 +1,24 @@
 <div *ngIf="mutant">
 <h1>{{mutant.name}}</h1>
+<div class="row ">
+<div class="col-md-4 ">
+	<form >
+	<div class="form-group">
+		<label for="name">Name</label>
+		<input type="text" class="form-control" id="name" placeholder="Name" required [(ngModel)]="mutant.name" name="name">
+	</div>
+	<div class="form-group">
+	 <label for="abilities">Abilities</label>
+	 <div *ngFor="let ability of mutant.abilities;let i=index;" class="input-group" >
+	 	<input  type="text" class="form-control" id="abilities" placeholder="{{i+1}}" [(ngModel)]="ability.description" name="ability{{i}}">
+	 	<span class="input-group-btn">
+	 		<button type="button" class="btn btn-danger" (click)="deleteAbility(i)"><span class="glyphicon glyphicon-minus"></span></button>
+	 	</span>       	 	
+	 </div>
+	 	<button type="button" class="btn btn-primary" (click)="addAbility()"><span class="glyphicon glyphicon-plus"></span></button>       	 
+	</div>   
+	     <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+	</form>
+</div>
+</div>
 </div>

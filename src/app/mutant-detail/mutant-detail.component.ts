@@ -13,12 +13,24 @@ import 'rxjs/add/operator/switchMap';
 })
 export class MutantDetailComponent implements OnInit {
   mutant: Mutant;
-  abcd='abcd';  
+  
+  deleteAbility(i: number): void{
+      this.mutant.abilities.splice(i,1);
+  }
+  addAbility(): void{
+      this.mutant.abilities.push(new Ability(''));
+  }
   constructor(
     private mutantService: MutantService,
     private route: ActivatedRoute,
     private location: Location
     ) {}
+  save(): void{
+      this.mutantService.updatemutant(this.mutant).then(()=> this.goBack());
+  }
+  goBack(): void {
+      this.location.back();
+    }
 
   ngOnInit() {      
       this.route.params

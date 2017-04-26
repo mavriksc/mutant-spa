@@ -30,6 +30,13 @@ export class MutantService {
       .then(response => response.json().data as Mutant)
       .catch(this.handleError);
   }
+  updatemutant(m: Mutant): Promise<Mutant> {
+      const url = `${this.mutantsUrl}/${m.id}`;
+      return this.http.put(url,JSON.stringify(m),{headers: this.headers})
+      .toPromise()
+      .then(response => response.json().data as Mutant)
+      .catch(this.handleError);
+  }
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
