@@ -1,3 +1,14 @@
-<p>
-  disaster-detail works!
-</p>
+<div *ngIf="disaster">
+<h1>{{disaster.name}}!!</h1>
+
+<div *ngIf="disaster.state=='INCOMING'">
+	<h2>incoming</h2>
+</div>
+<div *ngIf="disaster.state=='ASSIGNED'">
+	<h2>assigned</h2>
+</div>
+<div *ngIf="disaster.state=='DEBREIFED'">
+	<h2>debreifed</h2>
+	{{disaster.disasterAverted}}
+</div>
+</div>

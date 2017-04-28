@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-9">
+  <div class="col-md-9">
     <h2>Mutant Admin</h2>
     <div class="row">
       <div class="col-md-4">
@@ -7,7 +7,13 @@
         	<h3>Mutants:</h3>
         </div>
         <div class="list-group">
-        	<a *ngFor="let mutant of mutants" [routerLink]="['/mutants', mutant.id]" class="list-group-item">{{mutant.name}}</a>
+        	<a *ngFor="let mutant of mutants" 
+	        	[routerLink]="['/mutants', mutant.id]" 
+	        	class="list-group-item" 
+	        	[class.list-group-item-danger]="!mutant.alive"
+	        	[class.list-group-item-success]="mutant.alive">
+        	{{mutant.name}}
+        	</a>
         </div>
         
       </div>
@@ -18,21 +24,26 @@
         <form>
         <div class="form-group">
         	<label for="name">Name</label>
-        	<input type="text" class="form-control" id="name" placeholder="Name" required [(ngModel)]="name" name="name">
+        	<input type="text" class="form-control" id="name" placeholder="Name" required [(ngModel)]="newMutant.name" name="name">
         </div>
         <div class="form-group">
        	 <label for="abilities">Abilities</label>
-       	 <div *ngFor="let ability of abilities;let i=index;" class="input-group" >
-       	 	<input  type="text" class="form-control" id="abilities" placeholder="{{i+1}}" [(ngModel)]="ability.description" name="ability{{i}}">
+       	 <div *ngFor="let ability of newMutant.abilities;let i=index;" class="input-group" >
+       	 	<input  type="text" class="form-control" id="abilities" 
+       	 		placeholder="{{i+1}}" [(ngModel)]="ability.description" name="ability{{i}}">
+       	 	
        	 	<span class="input-group-btn">
-       	 		<button type="button" class="btn btn-danger" (click)="deleteAbility(i)"><span class="glyphicon glyphicon-minus"></span></button>
+       	 		<button type="button" class="btn btn-danger" (click)="deleteAbility(i)">
+       	 		<span class="glyphicon glyphicon-minus"></span>
+       	 		</button>
        	 	</span>       	 	
        	 </div>
-       	 	<button type="button" class="btn btn-primary" (click)="addAbility()"><span class="glyphicon glyphicon-plus"></span></button>       	 
+       	 	<button type="button" class="btn btn-primary" (click)="addAbility()">
+       	 	<span class="glyphicon glyphicon-plus"></span>
+       	 	</button>       	 
         </div>   
              <button type="button" class="btn btn-primary" (click)="add()">Add</button>
         </form>
-        <br>
       </div>
     </div>
   </div>

@@ -13,7 +13,7 @@ export class SquadService {
     return this.http.get(this.squadURL).toPromise().then(response => response.json().data as Squad[]).catch(this.handleError);
   }
   getSquad(id: number): Promise<Squad> {
-    const url = '${this.squadURL}/${id}';
+    const url = `${this.squadURL}/${id}`;
     return this.http.get(url).toPromise().then(response => response.json().data as Squad).catch(this.handleError);
   }
   createSquad(ids: number[]): Promise<Squad> {

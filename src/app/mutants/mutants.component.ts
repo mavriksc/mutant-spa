@@ -11,47 +11,40 @@ import { Router } from '@angular/router';
 })
 export class MutantsComponent implements OnInit {
   mutants: Mutant[];
-  name = '';
-  abilities: Ability[] = [];
+  newMutant: Mutant;
+  
 
   getMutants(): void {
     this.mutantService.getMutants().then(mutants=> this.mutants = mutants);
   }
 
   add(): void {    
-    this.name = this.name.trim();
-    if (!this.name) { return; }
-    const m = new Mutant();
-    m.abilities = [];
-    m.name = this.name;
-    this.abilities.forEach(item => {
-        if(item.description !=''){
-                m.abilities.push(item);
-            }
-    });
-   
-    this.mutantService.createMutant(m).then(mutant => this.mutants.push(mutant));
-    // clear form
-    this.name='';
-    this.abilities = [];
-    this.abilities.push(new Ability(''));
-    this.abilities.push(new Ability(''));
-    this.abilities.push(new Ability(''));
-      
+    this.newMutant.name = this.newMutant.name.trim();
+    if (!this.newMutant.name) { return; }
+    this.newMutant.abilities = this.newMutant.abilities.filter(ability => ability.description !=='');   
+    this.mutantService.createMutant(this.newMutant).then(mutant => this.mutants.push(mutant));
+    this.resetForm();      
   }
   deleteAbility(i: number): void{
-      this.abilities.splice(i,1);
+      this.newMutant.abilities.splice(i,1);
   }
   addAbility(): void{
-      this.abilities.push(new Ability(''));
+      this.newMutant.abilities.push(new Ability());
   }
   constructor(private router: Router, private mutantService: MutantService) { }
+  resetForm(): void {
+      this.newMutant = new Mutant();
+      this.newMutant.name='';
+      this.newMutant.abilities = [];
+      this.newMutant.abilities.push(new Ability());
+      this.newMutant.abilities.push(new Ability());
+      this.newMutant.abilities.push(new Ability());
+      
+  }
 
   ngOnInit() {
     this.getMutants();
-    this.abilities.push(new Ability(''));
-    this.abilities.push(new Ability(''));
-    this.abilities.push(new Ability(''));
+    this.resetForm();
   }
 
 }

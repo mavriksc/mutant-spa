@@ -18,20 +18,20 @@ export class MutantDetailComponent implements OnInit {
       this.mutant.abilities.splice(i,1);
   }
   addAbility(): void{
-      this.mutant.abilities.push(new Ability(''));
-  }
-  constructor(
-    private mutantService: MutantService,
-    private route: ActivatedRoute,
-    private location: Location
-    ) {}
+      this.mutant.abilities.push(new Ability());
+  }  
   save(): void{
+      this.mutant.abilities = this.mutant.abilities.filter(ability => ability.description !=='');   
       this.mutantService.updatemutant(this.mutant).then(()=> this.goBack());
   }
   goBack(): void {
       this.location.back();
-    }
-
+  }
+  constructor(
+          private mutantService: MutantService,
+          private route: ActivatedRoute,
+          private location: Location
+          ) {}
   ngOnInit() {      
       this.route.params
       .switchMap((params: Params) => this.mutantService.getMutant(+params['id']))

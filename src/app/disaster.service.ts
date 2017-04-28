@@ -15,7 +15,7 @@ export class DisasterService {
     return this.http.get(this.disasterUrl).toPromise().then(response => response.json().data as Disaster[]).catch();
   }
   getDisaster(id: number): Promise<Disaster> {
-    const url = '${this.disasterUrl}/${id}';
+    const url = `${this.disasterUrl}/${id}`;
     return this.http.get(url).toPromise().then(response => response.json().data as Disaster).catch();
   }
   createDisaster(d: Disaster): Promise<Disaster> {
@@ -23,7 +23,7 @@ export class DisasterService {
       .toPromise().then(response => response.json().data as Disaster).catch();
   }
   updateDisaster(id: number, d: Disaster): Promise<Disaster> {
-    const url = '${this.disasterUrl}/${id}';
+    const url = `${this.disasterUrl}/${id}`;
     return this.http.put(url, JSON.stringify(d), {headers: this.headers})
       .toPromise().then(response => response.json().data as Disaster).catch();
   }
