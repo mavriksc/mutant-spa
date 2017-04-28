@@ -3,12 +3,19 @@
 
 <div *ngIf="disaster.state=='INCOMING'">
 	<h2>incoming</h2>
+<!-- 	edit disaster -->
+	<assign-squad (assigned)="assignSquad($event)"></assign-squad>
 </div>
 <div *ngIf="disaster.state=='ASSIGNED'">
 	<h2>assigned</h2>
+<!-- 	debreif -->
 </div>
 <div *ngIf="disaster.state=='DEBREIFED'">
 	<h2>debreifed</h2>
 	{{disaster.disasterAverted}}
+	<div class="well">
+  		<mutant-list [(mutants)]="disaster.squad.mutants"> </mutant-list>
+  	</div>
+<!-- 	review -->
 </div>
 </div>

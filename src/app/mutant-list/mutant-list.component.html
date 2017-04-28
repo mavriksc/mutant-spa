@@ -1,0 +1,8 @@
+<ul class="list-group">
+	<li *ngFor="let mutant of mutants;let i = index" 
+ 	class="list-group-item"
+ 	[class.active]="mutant === selectedMutant"
+ 	(click)="select(mutant)">
+	{{mutant.name}}
+	</li>
+</ul>
