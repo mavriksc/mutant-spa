@@ -40,13 +40,13 @@ export class AssignSquadComponent implements OnInit {
   }
   
   addToSquad() {
-      if (this.mutants.length > 0 && this.selectedMutant) {
+      if (this.mutants.length > 0 ) {
           this.squad.push(this.mutants.splice(this.selectedMutant, 1)[0]);
       }
       
   }
   removeFromSquad() {
-      if( this.squad.length > 0 && this.selectedSquadMember){
+      if( this.squad.length > 0 ){
           this.mutants.push(this.squad.splice(this.selectedSquadMember, 1)[0]);
       }
   }
@@ -59,6 +59,7 @@ export class AssignSquadComponent implements OnInit {
           private mutantService: MutantService) { }
 
   ngOnInit() {
+      
       this.mutantService.getMutants().then(mutants => this.mutants = mutants);
       this.mutantSearchResults = this.searchTerms.debounceTime(300)  
       .distinctUntilChanged() 
