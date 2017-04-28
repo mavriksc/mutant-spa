@@ -12,6 +12,7 @@ import { DisasterDetailComponent } from './disaster-detail/disaster-detail.compo
 import { MutantService } from './mutant.service';
 import { AssignSquadComponent } from './assign-squad/assign-squad.component';
 import { MutantListComponent } from './mutant-list/mutant-list.component';
+import { DebreifDisasterComponent } from './debreif-disaster/debreif-disaster.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MutantListComponent } from './mutant-list/mutant-list.component';
     MutantDetailComponent,
     DisasterDetailComponent,
     AssignSquadComponent,
-    MutantListComponent
+    MutantListComponent,
+    DebreifDisasterComponent
   ],
   imports: [
     BrowserModule,

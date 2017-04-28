@@ -23,6 +23,13 @@ export class DisastersComponent implements OnInit {
     getDisasters(): void {
     	this.disasterService.getDisasters().then(disasters => this.disasters = disasters);
     }
+    add(): void {
+        this.newDisaster.name = this.newDisaster.name.trim();
+        if(!this.newDisaster.name){return;}
+        this.newDisaster.characteristics = this.newDisaster.characteristics.filter( characteristic => characteristic.description !=='');
+        this.disasterService.createDisaster(this.newDisaster).then(d=> this.disasters.push(d));
+        this.resetForm();
+    }
     resetForm(): void {
         this.newDisaster = new Disaster();
         this.newDisaster.characteristics = [];
